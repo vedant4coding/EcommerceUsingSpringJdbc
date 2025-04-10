@@ -81,5 +81,12 @@ public class SellerRepositoryIMPL implements SellerRepository{
 	    int rowsAffected = jdbcTemplate.update(sql.toString(), params.toArray());
 	    return rowsAffected > 0;
 	}
+	
+	
+	public boolean deleteProduct(int prodId) {
+		String sql = "delete from products where prodId = ?";
+	    int value = jdbcTemplate.update(sql,prodId);
+		return value>0;
+	}
 
 }

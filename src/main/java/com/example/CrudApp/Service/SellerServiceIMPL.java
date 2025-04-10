@@ -29,4 +29,10 @@ public class SellerServiceIMPL implements SellerService{
 		// TODO Auto-generated method stub
 		return sellerRepositoryImpl.editProduct(editProduct);
 	}
+
+	@Override
+	public boolean deleteProduct(int prodId) {
+		// TODO Auto-generated method stub
+		return sellerRepositoryImpl.deleteProduct(prodId);
+	}
 }

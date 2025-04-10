@@ -1,11 +1,10 @@
 package com.example.CrudApp.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.CrudApp.Model.AddProductDto;
@@ -34,6 +33,12 @@ public class SellerController {
 	@PostMapping("/editProduct")
 	public String editProduct(@RequestBody EditProductDto editProduct) {
 		boolean isProductAdded = sellerServiceImpl.editProduct(editProduct);
-		return isProductAdded?"Product Added" : "Product not added";
+		return isProductAdded?"Product edited" : "Product not edited";
+	}
+	
+	@PostMapping("/deleteProduct")
+	public String deleteProduct(@RequestParam int prodId) {
+		boolean isProductDeleted = sellerServiceImpl.deleteProduct(prodId);
+		return isProductDeleted?"Product deleted" : "Product not deleted";
 	}
 }
