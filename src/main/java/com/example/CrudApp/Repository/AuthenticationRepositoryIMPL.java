@@ -72,7 +72,7 @@ public class AuthenticationRepositoryIMPL implements AuthenticationRepository {
 
 	public boolean isUserLogout(int userId) {
 		String sql = "UPDATE users SET loginstatus = ? WHERE userId = ?";
-		int result = jdbcTemplate.update(sql, "inactive", userId);
+		int result = jdbcTemplate.update(sql, 0, userId);
 		return result > 0 ? true : false;
 	}
 }
