@@ -30,11 +30,11 @@ public class AuthenticationController {
 		String result = authenticationServiceImpl.UserLogin(user);
 		arr = result.split("/");
 		if ("admin-dashboard".equals(arr[0])) {
-	        return "redirect:/admin/dashboard";
+	        return "redirect:-admin-dashboard";
 	    } else if ("buyer-dashboard".equals(arr[0])) {
-	        return "redirect:/buyer/dashboard";
+	        return "redirect:-buyer-dashboard";
 	    } else if ("seller-dashboard".equals(arr[0]) && !arr[1].isEmpty()) {
-	        return "redirect:/seller/dashboard/"+ arr[1];
+	        return "redirect:-seller-dashboard/"+ arr[1];
 	    }  else if ("Already logged in".equals(arr[0])) {
 	        return "already logged in"; 
 	    } else if ("invalid-login".equals(arr[0])) {
@@ -48,7 +48,5 @@ public class AuthenticationController {
     public String logout(@RequestParam int userId) {
 		boolean result = authenticationServiceImpl.isUserLogout(userId);
         return result ? "Logged out successfully" : "Logout failed";
-    }
-	
-	
+	}
 }
