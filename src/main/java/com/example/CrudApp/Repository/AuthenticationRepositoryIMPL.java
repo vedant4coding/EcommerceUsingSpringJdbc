@@ -62,7 +62,7 @@ public class AuthenticationRepositoryIMPL implements AuthenticationRepository {
 			case "BUYER":
 				return "buyer-dashboard";
 			case "SELLER":
-				return "seller-dashboard";
+				return "seller-dashboard/"+userId;
 			default:
 				return "unknown-role";
 			}

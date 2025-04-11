@@ -20,4 +20,6 @@ public interface AdminService {
 	boolean deleteUser(int userId);
 
 	boolean addCategory(Category category);
+
+	List<Category> viewCategories();
 }

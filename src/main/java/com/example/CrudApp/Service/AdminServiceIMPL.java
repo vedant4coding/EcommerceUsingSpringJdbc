@@ -53,5 +53,11 @@ public class AdminServiceIMPL implements AdminService {
 	    return adminRepository.addCategory(category);
 	}
 
+	@Override
+	public List<Category> viewCategories() {
+		// TODO Auto-generated method stub
+		return adminRepository.viewCategories();
+	}
+
 
 }

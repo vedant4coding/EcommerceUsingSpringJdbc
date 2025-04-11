@@ -20,6 +20,8 @@ public interface AdminRepository {
 	boolean deleteUser(int userId);
 
 	boolean addCategory(Category category);
+
+	List<Category> viewCategories();
 	
 
 }

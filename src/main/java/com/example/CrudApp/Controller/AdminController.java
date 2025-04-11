@@ -59,12 +59,15 @@ public class AdminController {
 	    }
 	}
 	
+	@PostMapping("/viewCategories")
+	public List<Category> viewCategories(){
+		return adminServiceImpl.viewCategories();
+	}
+
+	
 	@PostMapping("/addCategory")
 	public String addCategory(@RequestBody Category category) {
 	    boolean added = adminServiceImpl.addCategory(category);
 	    return added ? "Category Added" : "Failed to Add Category";
 	}
-
-
-
 }

@@ -87,5 +87,12 @@ public class AdminRepositoryIMPL implements AdminRepository{
 	    return rows > 0;
 	}
 
+	@Override
+	public List<Category> viewCategories() {
+		String sql = "SELECT * FROM categories";
+		List<Category> categoryList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class));
+	    return categoryList;
+	}
+
 
 }
