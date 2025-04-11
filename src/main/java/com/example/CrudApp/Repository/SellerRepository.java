@@ -8,4 +8,5 @@ public interface SellerRepository {
 	public boolean isAddCategory(Category category);
 	public boolean isAddProduct(AddProductDto addProduct);
 	public boolean editProduct(EditProductDto editProduct);
+	public boolean deleteProduct(int prodId);
 }
