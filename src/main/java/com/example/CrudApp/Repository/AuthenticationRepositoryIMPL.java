@@ -58,16 +58,16 @@ public class AuthenticationRepositoryIMPL implements AuthenticationRepository {
 			// 3. Return dashboard based on user type
 			switch (userType.toUpperCase()) {
 			case "ADMIN":
-				return "admin-dashboard";
+				return "admin-dashboard/"+userId;
 			case "BUYER":
-				return "buyer-dashboard";
+				return "buyer-dashboard/"+userId;
 			case "SELLER":
 				return "seller-dashboard/"+userId;
 			default:
-				return "unknown-role";
+				return "unknown-role/";
 			}
 		}
-		return "invalid-login";
+		return "invalid-login/";
 	}
 
 	public boolean isUserLogout(int userId) {
