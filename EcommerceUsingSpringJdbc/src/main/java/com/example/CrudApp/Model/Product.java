@@ -12,7 +12,7 @@ public class Product {
     private int prodId;
     private String prodname;
     private String proddesc;
-    private String prodimage;
+    private String prodimageid;
     private BigDecimal price;
     private int discount;
     private int quantity;
