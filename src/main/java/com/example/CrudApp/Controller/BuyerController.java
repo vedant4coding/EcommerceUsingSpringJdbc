@@ -40,71 +40,71 @@ import org.springframework.web.bind.annotation.*;
 import com.example.CrudApp.Model.ViewCategoryDto;
 import com.example.CrudApp.Model.ViewProductDto;
 import com.example.CrudApp.Service.BuyerService;
-@CrossOrigin(origins="*")
+
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/Buyer")
 public class BuyerController {
 
-    @Autowired
-    BuyerService buyerServiceImpl;
+	@Autowired
+	BuyerService buyerServiceImpl;
 
-    // Endpoint to fetch product list with image URLs
-	    @GetMapping("/viewProducts")
-    public List<ViewProductDto> viewProducts() {
-        return buyerServiceImpl.viewProducts();
-    }
-    
-    
-    // Inject the image path from application.properties
-    @Value("${product.image}")
-    private String imagesPath;
+	// Endpoint to fetch product list with image URLs
+	@GetMapping("/viewProducts")
+	public List<ViewProductDto> viewProducts() {
+		return buyerServiceImpl.viewProducts();
+	}
 
-    // Endpoint to serve image files
-    @GetMapping("/images/{imageName}")
-    public ResponseEntity<InputStreamResource> getImage(@PathVariable String imageName) throws IOException {
-        File file = new File(imagesPath + File.separator + imageName);
+	// Inject the image path from application.properties
+	@Value("${product.image}")
+	private String imagesPath;
 
-        if (!file.exists()) {
-            return ResponseEntity.notFound().build();
-        }
+	// Endpoint to serve image files
+	@GetMapping("/images/{imageName}")
+	public ResponseEntity<InputStreamResource> getImage(@PathVariable String imageName) throws IOException {
+		File file = new File(imagesPath + File.separator + imageName);
 
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+		if (!file.exists()) {
+			return ResponseEntity.notFound().build();
+		}
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=" + imageName)
-                .contentLength(file.length())
-                .contentType(MediaType.IMAGE_JPEG) // You can change this based on your image type
-                .body(resource);
-    }
-    
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
-    @GetMapping("/viewCategories")
-    public List<ViewCategoryDto> viewCategories() {
-        return buyerServiceImpl.viewCategories();
-    }
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=" + imageName)
+				.contentLength(file.length()).contentType(MediaType.IMAGE_JPEG) // You can change this based on your
+																				// image type
+				.body(resource);
+	}
 
-    @Value("${category.image}")
-    private String categoryImagesPath;
-    
-    @GetMapping("/categoryImages/{imageName}")
-    public ResponseEntity<InputStreamResource> getCategoryImage(@PathVariable String imageName) throws IOException {
-        File file = new File(categoryImagesPath + File.separator + imageName);
+	@GetMapping("/viewCategories")
+	public List<ViewCategoryDto> viewCategories() {
 
-        if (!file.exists()) {
-            return ResponseEntity.notFound().build();
-        }
+		List<ViewCategoryDto> catDto = buyerServiceImpl.viewCategories();
+		System.out.println(catDto);
+		return buyerServiceImpl.viewCategories();
+	}
 
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+	@Value("${category.image}")
+	private String categoryImagesPath;
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=" + imageName)
-                .contentLength(file.length())
-                .contentType(MediaType.IMAGE_JPEG) // You can change this based on your image type
-                .body(resource);
-    }
-    
-    @GetMapping("/viewProductsByCategoryId")
-    public List<ViewProductDto> viewProductsByCategoryId(@RequestParam int categoryId){
-    	return buyerServiceImpl.viewProductsByCategoryId(categoryId);
-    }
+	@GetMapping("/categoryImages/{imageName}")
+	public ResponseEntity<InputStreamResource> getCategoryImage(@PathVariable String imageName) throws IOException {
+		File file = new File(categoryImagesPath + File.separator + imageName);
+
+		if (!file.exists()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=" + imageName)
+				.contentLength(file.length()).contentType(MediaType.IMAGE_JPEG) // You can change this based on your
+																				// image type
+				.body(resource);
+	}
+
+	@GetMapping("/viewProductsByCategoryId")
+	public List<ViewProductDto> viewProductsByCategoryId(@RequestParam int categoryId) {
+		return buyerServiceImpl.viewProductsByCategoryId(categoryId);
+	}
 }

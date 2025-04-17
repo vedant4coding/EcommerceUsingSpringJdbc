@@ -46,7 +46,7 @@ public class BuyerServiceIMPL implements BuyerService {
 
 			// ✅ Build image URL instead of converting to MultipartFile
 			String imgName = product.getProductImgName();
-			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			String imageUrl = "http://localhost:8080/images/productImages/" + imgName;
 			vdt.setImageUrl(imageUrl);
 
 			newList.add(vdt);
@@ -66,7 +66,7 @@ public class BuyerServiceIMPL implements BuyerService {
 
 			// ✅ Build image URL instead of converting to MultipartFile
 			String imgName = category.getCategoryImgName();
-			String categoryImageUrl = "http://localhost:8080/Buyer/categoryImages/" + imgName;
+			String categoryImageUrl = "http://localhost:8080/images/categoryImages/" + imgName;
 			vct.setCategoryImageUrl(categoryImageUrl);
 
 			newList.add(vct);
@@ -92,7 +92,7 @@ public class BuyerServiceIMPL implements BuyerService {
 
 			// ✅ Build image URL instead of converting to MultipartFile
 			String imgName = product.getProductImgName();
-			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			String imageUrl = "http://localhost:8080/images/productImages/" + imgName;
 			vdt.setImageUrl(imageUrl);
 
 			newList.add(vdt);
