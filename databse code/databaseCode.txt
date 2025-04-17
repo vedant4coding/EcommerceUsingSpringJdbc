@@ -1,0 +1,135 @@
+use ecommerceUsingSpringJdbc;
+Database changed
+mysql> CREATE TABLE users (
+    ->     userId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(100),
+    ->     email VARCHAR(100),
+    ->     contact VARCHAR(15),
+    ->     password VARCHAR(16),
+    ->     usertype VARCHAR(30),
+    ->     loginstatus INT,
+    ->     dateinfo TIMESTAMP,
+    ->     address VARCHAR(500),
+    ->     profileImg VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> drop table users;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE users (
+    ->     userId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(100),
+    ->     email VARCHAR(100),
+    ->     contact VARCHAR(15),
+    ->     password VARCHAR(16),
+    ->     usertype VARCHAR(30),
+    ->     loginstatus INT,
+    ->     dateinfo TIMESTAMP,
+    ->     address VARCHAR(500),
+    ->     profileImg VARCHAR(300)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE products (
+    ->     prodId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     prodname VARCHAR(200),
+    ->     proddesc TEXT,
+    ->     prodimage VARCHAR(300),
+    ->     price DECIMAL(7,2),
+    ->     discount INT,
+    ->     quantity INT,
+    ->     rating DECIMAL(2,1),
+    ->     categoryId INT,
+    ->     FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
+    -> );
+ERROR 1824 (HY000): Failed to open the referenced table 'categories'
+mysql> CREATE TABLE categories (
+    ->     categoryId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     categoryname VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> CREATE TABLE products (
+    ->     prodId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     prodname VARCHAR(200),
+    ->     proddesc TEXT,
+    ->     prodimage VARCHAR(300),
+    ->     price DECIMAL(7,2),
+    ->     discount INT,
+    ->     quantity INT,
+    ->     rating DECIMAL(2,1),
+    ->     categoryId INT,
+    ->     FOREIGN KEY (categoryId) REFERENCES categories(categoryId)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE cart (
+    ->     cartId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     userId INT,
+    ->     prodId INT,
+    ->     cartdateinfo TIMESTAMP,
+    ->     FOREIGN KEY (userId) REFERENCES users(userId),
+    ->     FOREIGN KEY (prodId) REFERENCES products(prodId)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE orders (
+    ->     orderId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     userId INT,
+    ->     prodId INT,
+    ->     orderdateinfo TIMESTAMP,
+    ->     FOREIGN KEY (userId) REFERENCES users(userId),
+    ->     FOREIGN KEY (prodId) REFERENCES products(prodId)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE rating (
+    ->     rating DECIMAL(2,1),
+    ->     feedback VARCHAR(200),
+    ->     userId INT,
+    ->     prodId INT,
+    ->     FOREIGN KEY (userId) REFERENCES users(userId),
+    ->     FOREIGN KEY (prodId) REFERENCES products(prodId)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE payment (
+    ->     payId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     paymode VARCHAR(100),
+    ->     orderId INT,
+    ->     FOREIGN KEY (orderId) REFERENCES orders(orderId)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE search (
+    ->     userId INT,
+    ->     searchprodname VARCHAR(200),
+    ->     FOREIGN KEY (userId) REFERENCES users(userId)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE admin (
+    ->     adminId INT PRIMARY KEY AUTO_INCREMENT,
+    ->     adminName VARCHAR(100),
+    ->     adminUsername VARCHAR(100),
+    ->     adminPassword VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++------------------------------------+
+| Tables_in_ecommerceusingspringjdbc |
++------------------------------------+
+| admin                              |
+| cart                               |
+| categories                         |
+| orders                             |
+| payment                            |
+| products                           |
+| rating                             |
+| search                             |
+| users                              |
++------------------------------------+
+9 rows in set (0.00 sec)
