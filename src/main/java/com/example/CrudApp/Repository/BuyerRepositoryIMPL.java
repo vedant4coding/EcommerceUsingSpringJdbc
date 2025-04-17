@@ -32,7 +32,7 @@ public class BuyerRepositoryIMPL implements BuyerRepository{
 
 	@Override
 	public List<ViewProductDto> isViewProductsByCategoryId(int categoryId) {
-		String sql = "select * from categories where categoryId = ?";
+		String sql = "select * from products where categoryId = ?";
 		List<ViewProductDto> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ViewProductDto.class),categoryId);
 		return list;
 	}
