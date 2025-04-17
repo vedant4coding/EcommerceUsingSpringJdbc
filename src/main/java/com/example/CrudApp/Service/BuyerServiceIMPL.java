@@ -56,13 +56,47 @@ public class BuyerServiceIMPL implements BuyerService {
 
 	@Override
 	public List<ViewCategoryDto> viewCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ViewCategoryDto> list = buyerRepositoryImpl.isViewCategories();
+		List<ViewCategoryDto> newList = new ArrayList<>();
+
+		for (ViewCategoryDto category : list) {
+			ViewCategoryDto vct = new ViewCategoryDto();
+			vct.setCategoryId(category.getCategoryId());
+			vct.setCategoryname(category.getCategoryname());
+
+			// ✅ Build image URL instead of converting to MultipartFile
+			String imgName = category.getCategoryImgName();
+			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			vct.setCategoryImageUrl(imageUrl);
+
+			newList.add(vct);
+		}
+		return newList;
 	}
 
 	@Override
 	public List<ViewProductDto> viewProductsByCategoryId(int categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<ViewProductDto> list = buyerRepositoryImpl.isViewProductsByCategoryId(categoryId);
+		List<ViewProductDto> newList = new ArrayList<>();
+
+		for (ViewProductDto product : list) {
+			ViewProductDto vdt = new ViewProductDto();
+			vdt.setProdId(product.getProdId());
+			vdt.setProdname(product.getProdname());
+			vdt.setPrice(product.getPrice());
+			vdt.setDiscount(product.getDiscount());
+			vdt.setProddesc(product.getProddesc());
+			vdt.setQuantity(product.getQuantity());
+			vdt.setRating(product.getRating());
+			vdt.setSellerId(product.getSellerId());
+
+			// ✅ Build image URL instead of converting to MultipartFile
+			String imgName = product.getProductImgName();
+			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			vdt.setImageUrl(imageUrl);
+
+			newList.add(vdt);
+		}
+		return newList;
 	}
 }

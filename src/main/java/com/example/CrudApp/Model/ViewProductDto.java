@@ -20,5 +20,6 @@ public class ViewProductDto {
 	    private String categoryname;
 	    private BigDecimal rating;
 	    private int sellerId;
+	    private String productImgName;
 	    private String imageUrl;
 }

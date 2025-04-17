@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.CrudApp.Model.Category;
 import com.example.CrudApp.Model.Product;
+import com.example.CrudApp.Model.ViewCategoryDto;
 import com.example.CrudApp.Model.ViewProductDto;
 @Repository
 public class BuyerRepositoryIMPL implements BuyerRepository{
@@ -24,9 +25,9 @@ public class BuyerRepositoryIMPL implements BuyerRepository{
 	}
 
 	@Override
-	public List<Category> isViewCategories() {
+	public List<ViewCategoryDto> isViewCategories() {
 		String sql = "select * from categories";
-		List<Category> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class));
+		List<ViewCategoryDto> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ViewCategoryDto.class));
 		return list;
 	}
 

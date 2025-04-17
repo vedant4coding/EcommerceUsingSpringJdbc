@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ViewCategoryDto {
+	private String categoryId;
     private String categoryname;
     private String categoryImgName;
 //    private MultipartFile file;
