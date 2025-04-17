@@ -66,8 +66,8 @@ public class BuyerServiceIMPL implements BuyerService {
 
 			// ✅ Build image URL instead of converting to MultipartFile
 			String imgName = category.getCategoryImgName();
-			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
-			vct.setCategoryImageUrl(imageUrl);
+			String categoryImageUrl = "http://localhost:8080/Buyer/categoryImages/" + imgName;
+			vct.setCategoryImageUrl(categoryImageUrl);
 
 			newList.add(vct);
 		}

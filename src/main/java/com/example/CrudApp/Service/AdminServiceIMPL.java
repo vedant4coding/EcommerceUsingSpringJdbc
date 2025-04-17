@@ -1,6 +1,7 @@
 package com.example.CrudApp.Service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class AdminServiceIMPL implements AdminService {
 
 	@Override
 	public List<ViewCategoryDto> viewCategories() {
-		List<ViewCategoryDto> list = AdminRepositoryImpl.isViewCategories();
+		List<ViewCategoryDto> list = adminRepository.viewCategories();
 		List<ViewCategoryDto> newList = new ArrayList<>();
 
 		for (ViewCategoryDto category : list) {
@@ -66,7 +67,7 @@ public class AdminServiceIMPL implements AdminService {
 
 			// ✅ Build image URL instead of converting to MultipartFile
 			String imgName = category.getCategoryImgName();
-			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			String imageUrl = "http://localhost:8080/images/categoryImages/" + imgName;
 			vct.setCategoryImageUrl(imageUrl);
 
 			newList.add(vct);
