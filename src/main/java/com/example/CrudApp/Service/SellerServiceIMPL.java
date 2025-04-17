@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import com.example.CrudApp.Model.AddCategoryDto;
 import com.example.CrudApp.Model.AddProductDto;
 import com.example.CrudApp.Model.EditProductDto;
+import com.example.CrudApp.Model.Product;
+import com.example.CrudApp.Model.ViewProductDto;
 import com.example.CrudApp.Repository.SellerRepository;
 
 @Service
@@ -94,6 +98,30 @@ public class SellerServiceIMPL implements SellerService{
 	public boolean deleteProduct(int prodId) {
 		// TODO Auto-generated method stub
 		return sellerRepositoryImpl.deleteProduct(prodId);
+	}
+	@Override
+	public List<ViewProductDto> viewProductOfSeller(int sellerId) {
+		List<Product> list = sellerRepositoryImpl.isViewProducts(sellerId);
+		List<ViewProductDto> newList = new ArrayList<>();
+
+		for (Product product : list) {
+			ViewProductDto vdt = new ViewProductDto();
+			vdt.setProdname(product.getProdname());
+			vdt.setPrice(product.getPrice());
+			vdt.setDiscount(product.getDiscount());
+			vdt.setProddesc(product.getProddesc());
+			vdt.setQuantity(product.getQuantity());
+			vdt.setRating(product.getRating());
+			vdt.setSellerId(product.getSellerid());
+
+			// ✅ Build image URL instead of converting to MultipartFile
+			String imgName = product.getProductImgName();
+			String imageUrl = "http://localhost:8080/Buyer/images/" + imgName;
+			vdt.setImageUrl(imageUrl);
+
+			newList.add(vdt);
+		}
+		return newList;
 	}
 
 }

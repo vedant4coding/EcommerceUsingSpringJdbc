@@ -1,6 +1,7 @@
 package com.example.CrudApp.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.CrudApp.Model.AddCategoryDto;
 import com.example.CrudApp.Model.AddProductDto;
 import com.example.CrudApp.Model.EditProductDto;
+import com.example.CrudApp.Model.ViewProductDto;
 import com.example.CrudApp.Service.SellerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -57,8 +59,8 @@ public class SellerController {
 	}
 	
 	@PostMapping("/viewProductsOfSeller")
-	public String viewProductOfSeller(int sellerId) {
-		return null;
+	public List<ViewProductDto> viewProductOfSeller(int sellerId) {
+		return sellerServiceImpl.viewProductOfSeller(sellerId);
 		
 	}
 }

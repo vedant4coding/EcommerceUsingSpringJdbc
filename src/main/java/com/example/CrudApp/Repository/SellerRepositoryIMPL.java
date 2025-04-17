@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import com.example.CrudApp.Model.AddCategoryDto;
 import com.example.CrudApp.Model.AddProductDto;
 import com.example.CrudApp.Model.Category;
 import com.example.CrudApp.Model.EditProductDto;
+import com.example.CrudApp.Model.Product;
 @Repository
 public class SellerRepositoryIMPL implements SellerRepository{
 	
@@ -95,6 +97,14 @@ public class SellerRepositoryIMPL implements SellerRepository{
 		String sql = "delete from products where prodId = ?";
 	    int value = jdbcTemplate.update(sql,prodId);
 		return value>0;
+	}
+
+
+	@Override
+	public List<Product> isViewProducts(int sellerId) {
+		String sql = "select * from products where sellerId = ?";
+		List<Product> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Product.class),sellerId);
+		return list;
 	}
 
 
