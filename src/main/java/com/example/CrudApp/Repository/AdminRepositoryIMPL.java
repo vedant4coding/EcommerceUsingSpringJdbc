@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.CrudApp.Model.Category;
 import com.example.CrudApp.Model.User;
+import com.example.CrudApp.Model.ViewCategoryDto;
 
 @Repository
 public class AdminRepositoryIMPL implements AdminRepository{
@@ -84,9 +85,9 @@ public class AdminRepositoryIMPL implements AdminRepository{
 	}
 
 	@Override
-	public List<Category> viewCategories() {
+	public List<ViewCategoryDto> viewCategories() {
 		String sql = "SELECT * FROM categories";
-		List<Category> categoryList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class));
+		List<ViewCategoryDto> categoryList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(ViewCategoryDto.class));
 	    return categoryList;
 	}
 

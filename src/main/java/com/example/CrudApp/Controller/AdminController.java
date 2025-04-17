@@ -64,7 +64,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/viewCategories")
-	public List<Category> viewCategories(){
+	public List<ViewCategoryDto> viewCategories(){
 		return adminServiceImpl.viewCategories();
 	}
 

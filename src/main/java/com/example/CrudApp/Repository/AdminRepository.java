@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.CrudApp.Model.Category;
 import com.example.CrudApp.Model.User;
+import com.example.CrudApp.Model.ViewCategoryDto;
 
 public interface AdminRepository {
 
@@ -21,7 +22,7 @@ public interface AdminRepository {
 
 	boolean addCategory(Category category);
 
-	List<Category> viewCategories();
+	List<ViewCategoryDto> viewCategories();
 	
 
 }
