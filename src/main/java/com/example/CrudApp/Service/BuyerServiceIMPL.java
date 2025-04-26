@@ -36,6 +36,7 @@ public class BuyerServiceIMPL implements BuyerService {
 
 		for (Product product : list) {
 			ViewProductDto vdt = new ViewProductDto();
+			vdt.setProdId(product.getProdId());
 			vdt.setProdname(product.getProdname());
 			vdt.setPrice(product.getPrice());
 			vdt.setDiscount(product.getDiscount());

@@ -48,7 +48,9 @@ public class AuthenticationRepositoryIMPL implements AuthenticationRepository {
 		String sql1 = "SELECT userId FROM Users WHERE username = ? AND password = ?";
 		int userId = jdbcTemplate.queryForObject(sql1, Integer.class, user.getUsername(), user.getPassword());
 
-
+		String emailSql = "SELECT email FROM users WHERE username = ? AND password = ?";
+        String email = jdbcTemplate.queryForObject(emailSql, String.class, user.getUsername(), user.getPassword());
+		
 		String updateSql = "UPDATE Users SET loginstatus = ? WHERE userId = ?";
 		int rowsUpdated = jdbcTemplate.update(updateSql, 1, userId);
 		System.out.println(user.getLoginstatus());
@@ -57,11 +59,11 @@ public class AuthenticationRepositoryIMPL implements AuthenticationRepository {
 			// 3. Return dashboard based on user type
 			switch (userType.toUpperCase()) {
 			case "ADMIN":
-				return "admin-dashboard/"+userId;
+				return "admin-dashboard/"+userId+ "/"+ email;
 			case "BUYER":
-				return "buyer-dashboard/"+userId;
+				return "buyer-dashboard/"+userId+ "/"+ email;
 			case "SELLER":
-				return "seller-dashboard/"+userId;
+				return "seller-dashboard/"+userId+ "/"+ email;
 			default:
 				return "unknown-role/";
 			}

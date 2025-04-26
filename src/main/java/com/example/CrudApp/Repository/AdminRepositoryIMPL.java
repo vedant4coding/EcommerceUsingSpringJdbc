@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.CrudApp.Model.Category;
+import com.example.CrudApp.Model.Product;
 import com.example.CrudApp.Model.User;
 import com.example.CrudApp.Model.ViewCategoryDto;
 
@@ -68,8 +69,19 @@ public class AdminRepositoryIMPL implements AdminRepository{
 	        return null; // User not found
 	    }
 	}
+	
+	@Override
+	public Product searchProductByName(String prodname) {
+		String  sql = "SELECT * FROM products where prodname=?";
+		try {
+			 return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class),prodname.trim());
+		}catch(EmptyResultDataAccessException e){
+			return null;
+		}
+	}
 
-
+	
+	
 	@Override
 	public boolean deleteUser(int userId) {
 	    String sql = "DELETE FROM users WHERE userId = ?";

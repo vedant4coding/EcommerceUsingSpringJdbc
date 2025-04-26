@@ -75,5 +75,10 @@ public class AdminServiceIMPL implements AdminService {
 		return newList;
 	}
 
+	@Override
+	public Product searchProductByName(String prodname) {
+		return adminRepository.searchProductByName(prodname);
+	}
+
 
 }

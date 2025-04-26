@@ -26,15 +26,15 @@ public class AuthenticationController {
 	
 	@PostMapping("/login")
 	public String AdminLogin(@RequestBody User user) {
-		String arr[] = new String[2];
+		String arr[] = new String[3];
 		String result = authenticationServiceImpl.UserLogin(user);
 		arr = result.split("/");
 		if ("admin-dashboard".equals(arr[0])) {
-	        return "redirect:-admin-dashboard/"+ arr[1];
+	        return "redirect:-admin-dashboard/"+ arr[1]+"/"+arr[2];
 	    } else if ("buyer-dashboard".equals(arr[0])) {
-	        return "redirect:-buyer-dashboard/"+ arr[1];
+	        return "redirect:-buyer-dashboard/"+ arr[1]+"/"+arr[2];
 	    } else if ("seller-dashboard".equals(arr[0]) && !arr[1].isEmpty()) {
-	        return "redirect:-seller-dashboard/"+ arr[1];
+	        return "redirect:-seller-dashboard/"+ arr[1]+"/"+arr[2];
 	    }  else if ("Already logged in".equals(arr[0])) {
 	        return "already logged in"; 
 	    } else if ("invalid-login".equals(arr[0])) {

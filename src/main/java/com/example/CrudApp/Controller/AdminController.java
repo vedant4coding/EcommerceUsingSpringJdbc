@@ -58,8 +58,16 @@ public class AdminController {
 	public ResponseEntity<User> searchUserById(@RequestParam int userId) {
 	    User user = adminServiceImpl.searchUserById(userId);
 	    return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-	}// to check on postman
-	//localhost:8080/admin/searchUserById?userId=2
+	}
+	
+	@GetMapping("/searchProductByName")
+	public ResponseEntity<Product> searchProductByName(@RequestParam String prodname){
+//	    System.out.println("Received prodname: [" + prodname + "]");
+		Product prod = adminServiceImpl.searchProductByName(prodname);
+		return prod !=null ? ResponseEntity.ok(prod) : ResponseEntity.notFound().build();
+	}
+	
+	
 	
 	@DeleteMapping("/deleteUser")
 	public ResponseEntity<String> deleteUser(@RequestParam int userId) {

@@ -12,5 +12,7 @@ public class Cart {
     private int cartId;
     private int userId;
     private int prodId;
-    private Timestamp cartdateinfo;
+    private int quantity;
+    private Product product;
+//    private Timestamp cartdateinfo;
 }
